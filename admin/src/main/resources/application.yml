@@ -15,10 +15,10 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
+    url: jdbc:mysql://192.168.103.164:3306/testtttt?characterEncoding=UTF-8&useSSL=true&zeroDateTimeBehavior=convertToNull
+    username: mysqluser
+    password: mysqluser123
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/boot-admin?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
     type: com.zaxxer.hikari.HikariDataSource
   jpa:
     hibernate:
@@ -27,10 +27,11 @@ spring:
     open-in-view: true
   data:
     redis:
-      host: localhost
+      host: 192.168.103.164
       port: 6379
-      password: 123456
-      database: 0
+      timeout: 10000
+      password: Gd123aA
+      database: 11
   config:
     import:
       - "classpath:application-otel.yml"
