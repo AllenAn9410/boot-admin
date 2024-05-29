@@ -18,6 +18,9 @@ spring:
     url: jdbc:mysql://192.168.103.164:3306/testtttt?characterEncoding=UTF-8&useSSL=true&zeroDateTimeBehavior=convertToNull
     username: mysqluser
     password: mysqluser123
+#    url: jdbc:mysql://192.168.3.56:3306/pure_admin?characterEncoding=UTF-8&useSSL=true&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: Ax421125
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
   jpa:
@@ -26,6 +29,11 @@ spring:
     show-sql: true
     open-in-view: true
   data:
+#    redis:
+#      host: 192.168.3.56
+#      port: 6379
+#      timeout: 10000
+#      database: 11
     redis:
       host: 192.168.103.164
       port: 6379

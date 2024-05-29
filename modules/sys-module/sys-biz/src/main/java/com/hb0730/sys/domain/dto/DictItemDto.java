@@ -2,6 +2,7 @@ package com.hb0730.sys.domain.dto;
 
 import com.hb0730.common.api.domain.BaseDto;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -18,7 +19,7 @@ public class DictItemDto extends BaseDto {
     /**
      * 字典id
      */
-    @NotBlank(message = "字典id不能为空")
+    @NotNull(message = "字典id不能为空")
     private DictSmallDto dict;
     /**
      * 字典类型
