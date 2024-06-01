@@ -111,7 +111,7 @@ public class CheckCfgController {
 
     @GetMapping("/item/page")
     @Operation(summary = "分页查询配置子项信息")
-    @PreAuthorize("hasAnyAuthority('sys:checkCfg:item:page')")
+    @PreAuthorize("hasAnyAuthority('sys:checkCfg:item:query')")
     public R<JsfPage<SysCheckCfgItemDto>> pageItem(SysCheckCfgItemQuery query) {
         JsfPage<SysCheckCfgItemDto> res = sysCheckCfgItemService.page(query);
         return R.OK(res);

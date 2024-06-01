@@ -2,11 +2,14 @@ package com.hb0730.sys.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hb0730.base.exception.ServiceException;
 import com.hb0730.base.utils.StrUtil;
 import com.hb0730.common.api.JsfPage;
 import com.hb0730.data.core.service.BaseService;
 import com.hb0730.query.jpa.QueryHelper;
+import com.hb0730.security.domain.dto.UserInfoDto;
 import com.hb0730.sys.domain.dto.DictDto;
 import com.hb0730.sys.domain.dto.RoleDto;
 import com.hb0730.sys.domain.dto.SysCheckCfgDto;
@@ -26,6 +29,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,6 +57,11 @@ public class SysCheckCfgService extends BaseService<SysCheckCfgRepository, SysCh
      */
     public JsfPage<SysCheckCfgDto> page(SysCheckCfgQuery query) {
         Pageable page = QueryHelper.toPage(query);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserInfoDto userInfoDto = JSONObject.parseObject(JSON.toJSONString(authentication.getPrincipal()), UserInfoDto.class);
+        if (!userInfoDto.getRoles().contains("admin")) {
+            query.setOwnPhone(authentication.getName());
+        }
         Specification<SysCheckCfg> specification = QueryHelper.ofBean(query);
         Page<SysCheckCfg> pageData = baseRepository.findAll(specification, page);
         List<SysCheckCfgDto> res = mapstruct.toDtoList(pageData.getContent());

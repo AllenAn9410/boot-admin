@@ -20,6 +20,9 @@ public class SysCheckCfgItemQuery extends BaseQuery {
     @Query(value = "id", joinName = "cfg")
     private String cfgId;
 
+    @Query(value = "ownPhone")
+    private String ownPhone;
+
     /**
      * 状态
      */
