@@ -32,8 +32,8 @@ public class SysCheckCfg extends BaseEntity {
     /**
      * 字典项
      */
-    @OneToMany(mappedBy = "sysCheckCfg", cascade = {jakarta.persistence.CascadeType.ALL}, orphanRemoval = true)
-    private List<SysCheckCfgItem> sysCheckCfgItemList;
+    @OneToMany(mappedBy = "cfg", cascade = {jakarta.persistence.CascadeType.ALL}, orphanRemoval = true)
+    private List<SysCheckCfgItem> items;
 
     /**
      * 字典名称

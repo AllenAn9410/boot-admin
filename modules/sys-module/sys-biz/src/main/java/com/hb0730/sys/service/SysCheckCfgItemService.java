@@ -73,9 +73,16 @@ public class SysCheckCfgItemService extends BaseService<SysCheckCfgItemRepositor
      */
     @Transactional(rollbackOn = Exception.class)
     public String save(SysCheckCfgItemDto dto) {
-        SysCheckCfgItem entity = mapstruct.toEntity(dto);
-        save(entity);
-        return entity.getId();
+        SysCheckCfgDto entity = dto.getCfg();
+        SysCheckCfg byId = sysCheckCfgService.findById(entity.getId());
+        if (null == byId) {
+            throw new ServiceException("配置不存在");
+        }
+
+        SysCheckCfgItem sysCheckCfgItem = mapstruct.toEntity(dto);
+        sysCheckCfgItem.setCfg(byId);
+        save(sysCheckCfgItem);
+        return sysCheckCfgItem.getId();
     }
 
     /**
@@ -85,7 +92,7 @@ public class SysCheckCfgItemService extends BaseService<SysCheckCfgItemRepositor
      */
     @org.springframework.transaction.annotation.Transactional(rollbackFor = Exception.class)
     public void updateById(SysCheckCfgItemDto dto) {
-        SysCheckCfgDto cfg = dto.getSysCheckCfg();
+        SysCheckCfgDto cfg = dto.getCfg();
         if (null == cfg) {
             throw new ServiceException("配置项不能为空");
         }

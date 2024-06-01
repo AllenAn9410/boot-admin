@@ -23,7 +23,7 @@ public interface SysCheckCfgItemRepository extends BaseJpaRepository<SysCheckCfg
      * @param cfgId 系统配置ID
      * @return 数量
      */
-    @Query("select count(1) from SysCheckCfgItem where sysCheckCfg.id = ?1")
+    @Query("select count(1) from SysCheckCfgItem where cfg.id = ?1")
     int count(String cfgId);
 
 }

@@ -1,6 +1,9 @@
 package com.hb0730.sys.domain.query;
 
 import com.hb0730.common.api.BaseQuery;
+import com.hb0730.query.annotation.Equals;
+import com.hb0730.query.jpa.annotation.Query;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -13,4 +16,14 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString
 public class SysCheckCfgItemQuery extends BaseQuery {
+
+    @Query(value = "id", joinName = "cfg")
+    private String cfgId;
+
+    /**
+     * 状态
+     */
+    @Equals
+    @Schema(description = "状态")
+    private Boolean enabled;
 }

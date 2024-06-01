@@ -35,14 +35,18 @@ public class SysCheckCfgItem extends BaseEntity {
     /**
      * 字典id
      */
-    @ManyToOne(
-        targetEntity = SysCheckCfg.class,
-        fetch = jakarta.persistence.FetchType.EAGER)
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @JoinColumn(name = "cfg_id")
-    private SysCheckCfg sysCheckCfg;
+    private SysCheckCfg cfg;
 
     /**
      * svn路径
      */
     private String svnPath;
+
+    /**
+     * 状态
+     */
+    @Column(name = "`is_enabled`", columnDefinition = "tinyint(1) default 1")
+    private Boolean enabled;
 }

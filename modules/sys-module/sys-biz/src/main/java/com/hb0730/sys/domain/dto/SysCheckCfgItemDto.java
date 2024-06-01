@@ -1,6 +1,7 @@
 package com.hb0730.sys.domain.dto;
 
 import com.hb0730.common.api.domain.BaseDto;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,12 +33,12 @@ public class SysCheckCfgItemDto extends BaseDto {
 
 
     /**
-     * 是否启用
+     * 状态
      */
     private Boolean enabled;
 
     /**
      * 父项
      */
-    private SysCheckCfgDto sysCheckCfg;
+    private SysCheckCfgDto cfg;
 }
